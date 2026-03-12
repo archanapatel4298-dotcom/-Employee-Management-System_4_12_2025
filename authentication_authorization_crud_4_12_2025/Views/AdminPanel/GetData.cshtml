@@ -1,0 +1,126 @@
+﻿@model IEnumerable<authentication_authorization_crud_4_12_2025.Models.User>
+@{
+    ViewData["Title"] = "GetData";
+}
+
+<h1>GetData</h1>
+
+<h4 style="float:right">
+    <a asp-controller="Account" asp-action="SignUp" class="btn btn-primary">
+        Add Users
+    </a>
+</h4>
+
+<div class="col-md-12">
+    <table class="table table-bordered" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Password</th>
+                <th>IsActive</th>
+                <th>Edit</th>
+                <th>ViewProfile</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (User.Identity.Name == "Rachana")
+            {
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.IsActive == false)
+                            {
+                                <td class="text-danger">@item.UserId</td>
+                                <td class="text-danger">@item.Username</td>
+                                <td class="text-danger">@item.Email</td>
+                                <td class="text-danger">@item.Mobile</td>
+                                <td class="text-danger">@item.Password</td>
+                                @if (item.IsActive == false)
+                                {
+                                    <td class="text-danger">Not Active</td>
+                                }
+
+                                @*  <td class="text-danger">@item.IsActive</td> *@
+
+                                <td class=" text-center">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="AdminPanel" asp-action="Edit"
+                                           asp-route-UserId="@item.UserId" class="btn btn-danger text-primary
+                                                                                                         mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class=" text-center">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="AdminPanel" asp-action="ViewProfile"
+                                           asp-route-UserId="@item.UserId" class="btn btn-danger text-primary
+                                                                                                                         mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>@item.UserId</td>
+                                <td>@item.Username</td>
+                                <td>@item.Email</td>
+                                <td>@item.Password</td>
+                                <td>@item.UserId</td>
+
+                                @if (item.IsActive == true)
+                                {
+                                    <td>Active</td>
+                                }
+
+                                @*   <td>@item.IsActive</td> *@
+
+                                <td class=" text-center">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="AdminPanel" asp-action="Edit"
+                                           asp-route-UserId="@item.UserId" class="btn btn-primary mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class=" text-center">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="AdminPanel" asp-action="ViewProfile"
+                                           asp-route-UserId="@item.UserId" class="btn btn-primary mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            }
+
+            else
+            {
+                <h2><strong class="text-danger">You Are Not Authorized To View This Page!!!!!</strong></h2>
+            }
+        </tbody>
+    </table>
+</div>

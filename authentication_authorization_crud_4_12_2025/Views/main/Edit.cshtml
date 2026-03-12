@@ -1,0 +1,135 @@
+﻿@model authentication_authorization_crud_4_12_2025.Models.Chocolate
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post" asp-action="Edit">
+  
+    <input type="hidden" asp-for="ChocolateId"/>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class=" border p-3">
+        <div class="form-group row">
+
+            <h2 class=" text-info pl-3">Chocolate Data</h2>
+
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+
+                <div class="form-group row">
+                    <div class="col-4">
+
+                        <label>Chocolate Name</label>
+
+                    </div>
+                    <br />
+
+                    <div class="col-8">
+                        <input asp-for="choco_name" class="form-control" />
+                        <span asp-validation-for="choco_name" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+
+
+                <div class="form-group row">
+                    <div class="col-4">
+
+                        <label>Chocolate Company</label>
+
+                    </div>
+                    <br />
+
+                    <div class="col-8">
+                        <select asp-for="choco_company" class="form-control">
+                            <option disabled selected>---Please Select---</option>
+                            @foreach (var alldata in ViewBag.dropdown_edit)
+                            {
+                                <option>@alldata</option>
+                            }
+                        </select>
+                        <span asp-validation-for="choco_company" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group row">
+                    <div class="col-4">
+
+                        <label>Chocolate Type</label>
+
+                    </div>
+                    <br />
+
+                    <div class="col-8">
+                        <input asp-for="choco_type" class="form-control" />
+                        <span asp-validation-for="choco_type" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+
+
+                <div class="form-group row">
+                    <div class="col-4">
+
+                        <label>Cost</label>
+
+                    </div>
+                    <br />
+
+                    <div class="col-8">
+                        <input asp-for="cost" class="form-control" />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>User Name</label>
+
+                    </div>
+                    <div class="col-8">
+                        <select id="frm" asp-for="user"
+                                asp-items="@(new SelectList(ViewBag.message, "Username",
+                                                                                                                                                                                                 "Username"))" class="form-control">
+
+                            <option selected disabled value="">--Select from drop down--</option>
+
+                        </select>
+                        <span asp-validation-for="user" class="error text-danger"></span>
+                    </div>
+                </div>
+                <br />
+
+
+
+                <div class="form-group row">
+                    <div class="col offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Update" />
+                        </div>
+
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

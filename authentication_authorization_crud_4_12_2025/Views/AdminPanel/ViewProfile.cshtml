@@ -1,0 +1,52 @@
+﻿@model IEnumerable<authentication_authorization_crud_4_12_2025.Models.User>
+@{
+    ViewData["Title"] = "ViewProfile";
+}
+
+<h2>View Profile</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning">User not found.</div>
+}
+else
+{
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>@user.Username</strong>
+                <span class="float-end">ID: @user.UserId</span>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">Email</dt>
+                    <dd class="col-sm-9">@user.Email</dd>
+
+                    <dt class="col-sm-3">Mobile</dt>
+                    <dd class="col-sm-9">@(user.Mobile?.ToString() ?? "-")</dd>
+
+                    <dt class="col-sm-3">Password</dt>
+                    <dd class="col-sm-9">@(user.Password?.ToString() ?? "-")</dd>
+
+
+                    <dt class="col-sm-3">Role</dt>
+                    <dd class="col-sm-9">@user.Rolesname</dd>
+
+                    <dt class="col-sm-3">Active</dt>
+                    <dd class="col-sm-9">@(user.IsActive ? "Yes" : "No")</dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                <a asp-controller="AdminPanel" asp-action="GetData" class="btn btn-secondary">Back</a>
+                <button onclick="window.print()" class="btn btn-outline-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1" />
+                        <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    }
+}
+
